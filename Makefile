@@ -12,23 +12,23 @@
 
 NAME = so_long
 
-CC = cc -Wall -Wextra -Werror
+CC = cc 
 
-AR = ar -rcs
+MLXFLAGS = 
 
 RM = rm -rf
 
-SOURCES = 
+SOURCES = main.c 
 
 OBJECTS = ${SOURCES:.c=.o}
 
 all = ${NAME}
 
 ${NAME}:	${OBJECTS}
-		${AR} ${NAME} ${OBJECTS}
+		$(CC) $(OBJECTS) -Lmlx_linux -lmlx_linux -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) -I ./
 
-.c.o:
-		${CC} -c $< -o ${<:.c=.o} -I ./
+%.o: %.c
+		$(CC) -I./ -Imlx_linux -O3 -c $< -o $@
 
 clean:
 		${RM} ${OBJECTS} 

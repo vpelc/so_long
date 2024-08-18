@@ -6,15 +6,13 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:15:41 by vpelc             #+#    #+#             */
-/*   Updated: 2024/06/02 15:22:30 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/08/08 15:13:42 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx/mlx.h"
 #include "main.h"
-#include <unistd.h>
 
-void	ft_putchar(int c)
+/*void	ft_putchar(int c)
 {
 	write(1, &c, 1);
 }
@@ -35,4 +33,15 @@ int	main(void)
 	mlx_pixel_put(fo.mlx_ptr, fo.win_ptr, 250, 250, 0xFFFFFF);
 	mlx_key_hook(fo.win_ptr, deal_key, (void *)0);
 	mlx_loop(fo.mlx_ptr);
+}*/
+
+int main ()
+{
+
+	void	*mlx_ptr;
+	void	*mlx_win;
+
+	mlx_ptr = mlx_init();
+	mlx_win = mlx_new_window(mlx_ptr, 500, 500, "window");
+	mlx_loop(mlx_ptr);
 }
