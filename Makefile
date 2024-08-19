@@ -6,7 +6,7 @@
 #    By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/31 22:13:20 by vpelc             #+#    #+#              #
-#    Updated: 2024/05/31 22:25:06 by vpelc            ###   ########.fr        #
+#    Updated: 2024/08/19 16:30:11 by vpelc            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,10 @@ OBJECTS = ${SOURCES:.c=.o}
 all = ${NAME}
 
 ${NAME}:	${OBJECTS}
-		$(CC) $(OBJECTS) -Lmlx_linux -lmlx_linux -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) -I ./
+		$(CC) $(OBJECTS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) -I ./
 
 %.o: %.c
-		$(CC) -I./ -Imlx_linux -O3 -c $< -o $@
+		$(CC) -I./ -Imlx -c $< -o $@
 
 clean:
 		${RM} ${OBJECTS} 

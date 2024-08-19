@@ -6,21 +6,21 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:15:41 by vpelc             #+#    #+#             */
-/*   Updated: 2024/08/08 15:13:42 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/08/19 16:56:10 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-/*void	ft_putchar(int c)
+void	ft_putchar(int c)
 {
 	write(1, &c, 1);
 }
 
-int	deal_key(int key, void *param)
+int	deal_key(int key, void *param, void	*mlx_ptr, void *win_ptr)
 {
 	ft_putchar('X');
-	mlx_pixel_put(mlx_ptr, win_ptr, 2, 2, 0x000000);
+	mlx_pixel_put(mlx_ptr, win_ptr, 10, 10, 0x000000);
 	return (0);
 }
 
@@ -33,15 +33,4 @@ int	main(void)
 	mlx_pixel_put(fo.mlx_ptr, fo.win_ptr, 250, 250, 0xFFFFFF);
 	mlx_key_hook(fo.win_ptr, deal_key, (void *)0);
 	mlx_loop(fo.mlx_ptr);
-}*/
-
-int main ()
-{
-
-	void	*mlx_ptr;
-	void	*mlx_win;
-
-	mlx_ptr = mlx_init();
-	mlx_win = mlx_new_window(mlx_ptr, 500, 500, "window");
-	mlx_loop(mlx_ptr);
 }

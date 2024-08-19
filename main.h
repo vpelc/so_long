@@ -6,19 +6,19 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:17:22 by vpelc             #+#    #+#             */
-/*   Updated: 2024/08/15 16:25:33 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/08/19 16:52:51 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAIN_H
 # define MAIN_H
 
-#include <fcntl.h>
-#include <unistd.h>
-#include "mlx_linux/mlx.h"
-#include "GNL/get_next_line.h" 
+# include <fcntl.h>
+# include <unistd.h>
+# include "minilibx/mlx.h"
+# include "get_next_line/get_next_line.h" 
 
-#define pass (void)0
+# define pass (void)0
 
 typedef struct s_object
 {
