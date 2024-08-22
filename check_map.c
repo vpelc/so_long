@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:56:27 by vpelc             #+#    #+#             */
-/*   Updated: 2024/08/08 18:25:05 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/08/22 22:25:58 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,7 @@ void	check_elem(t_map map)
 			if (map.tab[i][j] == 'E')
 				map.exit++;
 			if (map.exit > 1)
-				pass; 
-				//error call no easy mode one exit
-			
+				send_error("Error only one exit possible");
 			if (map.tab[i][j] == 'P')
 			{
 				map.player++;
@@ -57,8 +55,7 @@ void	check_elem(t_map map)
 				map.player_pos[1] = j;
 			}
 			if (map.player > 1)
-				pass; 
-				//error call no multi no help one player
+				send_error("Error no multiplayer");
 			if (map.tab[i][j] == 'C')
 				map.collect++;
 			j++;
@@ -66,6 +63,5 @@ void	check_elem(t_map map)
 		i++;
 	}
 	if (map.collect == 0)
-		pass;
-		//error call you need gems 
+		send_error("Error you nees gems to open the exit");
 }

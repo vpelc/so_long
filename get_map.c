@@ -6,13 +6,13 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:40:23 by vpelc             #+#    #+#             */
-/*   Updated: 2024/08/13 13:49:28 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/08/22 22:03:51 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	ft_strlen_next(char *line)
+static int	ft_strlen_next(char *line)
 {
 	int	i;
 
@@ -31,15 +31,13 @@ t_map	read_map(t_map map)
 
 	fd = open(map.name, O_RDONLY);
 	if (fd == -1)
-		pass ;
-		//error call
+		send_error("Error with the file");
 	line = get_next_line(fd);
 	map.columns = ft_strlen_next(line);
 	while (line)
 	{
 		if (map.columns != ft_strlen_next(line))
-			pass ;
-			//error call
+			send_error("Error not a square");
 		map.lines++;
 		line = get_next_line(fd);
 	}

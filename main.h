@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:17:22 by vpelc             #+#    #+#             */
-/*   Updated: 2024/08/19 16:52:51 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/08/22 22:00:03 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@
 # include "get_next_line/get_next_line.h" 
 
 # define pass (void)0
+# define SQUARE_SIZE 64
 
-typedef struct s_object
+typedef struct s_mlx
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	void	*mlx;
+	void	*win;
 
-}	t_object;
+}	t_mlx;
 
 typedef struct s_map
 {
@@ -46,5 +47,29 @@ typedef struct s_map_copy
 	int		exit;
 	t_map	*map;
 }	t_map_copy;
+
+void	write_move(t_map *map, char dir);
+void	move_up(t_map *map);
+void	move_down(t_map *map);
+void	move_left(t_map *map);
+void	move_right(t_map *map);
+
+int		can_up(t_map *map);
+int		can_down(t_map *map);
+int		can_left(t_map *map);
+int		can_right(t_map *map);
+
+void	display(t_mlx *obj, int i, int j, char sqr_type);
+void	close_window(t_mlx *obj);
+
+t_map	read_map(t_map map);
+t_map	fill_map(t_map map);
+
+void	check_args(int argc, char *argv[]);
+
+void	check_border(t_map map);
+void	check_elem(t_map map);
+
+void	send_error(char *error);
 
 #endif
