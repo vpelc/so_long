@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:17:22 by vpelc             #+#    #+#             */
-/*   Updated: 2024/08/22 22:00:03 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/08/28 15:43:28 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,17 @@
 
 # include <fcntl.h>
 # include <unistd.h>
-# include "minilibx/mlx.h"
+# include "mlx/mlx.h"
 # include "get_next_line/get_next_line.h" 
 
-# define pass (void)0
 # define SQUARE_SIZE 64
 
-typedef struct s_mlx
+typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
 
-}	t_mlx;
+}	t_game;
 
 typedef struct s_map
 {
@@ -36,9 +35,12 @@ typedef struct s_map
 	char	**tab;
 	int		exit;
 	int		player;
-	int		player_pos[2];
+	int		player_pos_x;
+	int		player_pos_y;
 	int		collect;
 	int		end;
+	int		moves;
+	t_game	*game;
 }	t_map;
 
 typedef struct s_map_copy
@@ -59,17 +61,18 @@ int		can_down(t_map *map);
 int		can_left(t_map *map);
 int		can_right(t_map *map);
 
-void	display(t_mlx *obj, int i, int j, char sqr_type);
-void	close_window(t_mlx *obj);
+void	display(t_game *obj, int i, int j, char sqr_type);
+void	display_map(t_map *map, t_game *obj);
+void	close_window(t_game *obj);
 
-t_map	read_map(t_map map);
-t_map	fill_map(t_map map);
+void	fill_map(t_map *map);
 
 void	check_args(int argc, char *argv[]);
 
-void	check_border(t_map map);
-void	check_elem(t_map map);
+void	check_map(t_map *map);
 
 void	send_error(char *error);
+
+int		check_possible(t_map *map);
 
 #endif

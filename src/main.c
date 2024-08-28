@@ -6,31 +6,45 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:15:41 by vpelc             #+#    #+#             */
-/*   Updated: 2024/08/22 19:29:49 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/08/28 15:01:44 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../include/main.h"
 
 void	ft_putchar(int c)
 {
 	write(1, &c, 1);
 }
 
-int	deal_key(int key, void *param, void	*mlx, void *win)
+int	deal_key(int key, t_map *map, t_game *obj)
 {
-	ft_putchar('X');
-	mlx_pixel_put(mlx, win, 10, 10, 0x000000);
+	if (key == 53)
+		close_window(map);
+	if (key == 13 || key == 126)
+		move_up(map);
+	if (key == 1 || key == 125)
+		move_down(map);
+	if (key == 0 || key == 123)
+		move_left(map);
+	if (key == 2 || key == 124)
+		move_right(map);
 	return (0);
 }
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
-	t_mlx	game;
+	t_game	game;
+	t_map	map;
 
+	check_args(argc, argv);
+	map.name = argv[1];
+	fill_map(&map);
+	check_map(&map);
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 500, 500, "Diamond Rush");
-	mlx_pixel_put(game.mlx, game.win, 250, 250, 0xFFFFFF);
-	mlx_key_hook(game.win, deal_key, (void *)0);
+	game.win = mlx_new_window(game.mlx, map.columns * SQUARE_SIZE,
+			map.lines * SQUARE_SIZE, "Diamond Rush");
+	display_map(&map, &game);
+	mlx_key_hook(game.win, deal_key, &map);
 	mlx_loop(game.mlx);
 }

@@ -6,11 +6,11 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 15:55:45 by vpelc             #+#    #+#             */
-/*   Updated: 2024/08/22 20:49:13 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/08/28 14:51:25 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../include/main.h"
 
 static int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -27,12 +27,9 @@ static int	ft_strncmp(const char *s1, const char *s2, size_t n)
 void	check_args(int argc, char *argv[])
 {
 	if (argc < 2)
-		pass;
-		//call error too little
+		send_error("Error! not enough info\n");
 	if (argc > 2)
-		pass;
-		//call error too much
+		send_error("Error! too much info\n");
 	if (ft_strncmp(argv[1] + (ft_strlen(argv[1]) - 4), ".ber", 4))
-		pass; 
-		//call error not .ber file
+		send_error("Error! not the good file type\n");
 }

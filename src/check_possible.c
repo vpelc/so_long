@@ -6,13 +6,13 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:45:21 by vpelc             #+#    #+#             */
-/*   Updated: 2024/08/22 22:28:27 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/08/28 14:59:50 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../include/main.h"
 
-char	**fill_copy(t_map *map, char **copy)
+void	fill_copy(t_map *map, char ***copy)
 {
 	int	i;
 	int	j;
@@ -23,12 +23,11 @@ char	**fill_copy(t_map *map, char **copy)
 		j = 0;
 		while (j < map->columns)
 		{
-			copy[i][j] = map->tab[i][j];
+			(*copy)[i][j] = map->tab[i][j];
 			j++;
 		}
 		i++;
 	}
-	return (copy);
 }
 
 void	create_copy(t_map *map, char ***map_copy)
@@ -43,11 +42,17 @@ void	create_copy(t_map *map, char ***map_copy)
 	{
 		map_copy[i] = malloc(sizeof(char) * (map->columns + 1));
 		if (!map_copy[i])
+		{
 			send_error("Error malloc");
-			//free every line created
+			while (i >= 0)
+			{
+				free(map_copy[i]);
+				i--;
+			}
+		}
 		i++;
 	}
-	map_copy = fill_copy(map, map_copy);
+	fill_copy(map, map_copy);
 }
 
 void	ft_search(char **map, int row, int col, t_map_copy *copy)
@@ -76,7 +81,7 @@ int	check_possible(t_map *map)
 	if (!map_copy)
 		send_error("Error");
 	copy.map = map;
-	ft_search(map_copy, map->player_pos[0], map->player_pos[1], &copy);
-	//free map_copy
+	ft_search(map_copy, map->player_pos_x, map->player_pos_y, &copy);
+	free(map_copy);
 	return ((copy.exit == map->exit) && (copy.collect == map->collect));
 }

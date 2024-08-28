@@ -6,11 +6,11 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:40:23 by vpelc             #+#    #+#             */
-/*   Updated: 2024/08/22 22:03:51 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/08/28 15:18:57 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../include/main.h"
 
 static int	ft_strlen_next(char *line)
 {
@@ -24,46 +24,48 @@ static int	ft_strlen_next(char *line)
 	return (i);
 }
 
-t_map	read_map(t_map map)
+static void	read_map(t_map *map)
 {
 	int		fd;
 	char	*line;
 
-	fd = open(map.name, O_RDONLY);
+	fd = open(map->name, O_RDONLY);
 	if (fd == -1)
 		send_error("Error with the file");
 	line = get_next_line(fd);
-	map.columns = ft_strlen_next(line);
+	map->columns = ft_strlen_next(line);
+	map->lines = 0;
 	while (line)
 	{
-		if (map.columns != ft_strlen_next(line))
+		if (map->columns != ft_strlen_next(line))
 			send_error("Error not a square");
-		map.lines++;
+		map->lines++;
 		line = get_next_line(fd);
 	}
 	free(line);
-	return (map);
 }
 
-t_map	fill_map(t_map map)
+void	fill_map(t_map *map)
 {
 	int		i;
 	int		fd;
 	int		ll;
 	char	*line;
 
-	fd = open(map.name, O_RDONLY);
-	map.tab = malloc(sizeof(char *) * map.lines);
+	read_map(map);
+	fd = open(map->name, O_RDONLY);
+	map->tab = malloc(sizeof(char *) * map->lines);
 	line = get_next_line(fd);
 	ll = ft_strlen_next(line);
+	i = 0;
 	while (line)
 	{
-		map.tab[i] = malloc(sizeof(char) * ll);
-		map.tab[i] = line;
+		map->tab[i] = malloc(sizeof(char) * ll);
+		map->tab[i] = line;
 		line = get_next_line(fd);
 		i++;
 	}
-	map.end = 0;
+	map->end = 0;
+	map->moves = 0;
 	free(line);
-	return (map);
 }
