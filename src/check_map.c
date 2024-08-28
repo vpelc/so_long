@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:56:27 by vpelc             #+#    #+#             */
-/*   Updated: 2024/08/28 15:02:51 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/08/28 18:05:57 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ void	check_border(t_map *map)
 			send_error("Error! map not closed by walls");
 		i++;
 	}
+}
+
+void	check_size(t_map *map)
+{
+	if ((map->columns * SQUARE_SIZE) > 1920
+		|| (map->lines * SQUARE_SIZE) > 1080)
+		send_error("Error! map to big for the screen");
 }
 
 void	check_elem(t_map *map)
@@ -67,6 +74,7 @@ void	check_elem(t_map *map)
 void	check_map(t_map *map)
 {
 	check_border(map);
+	check_size(map);
 	check_elem(map);
 	check_possible(map);
 }
