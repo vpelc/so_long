@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 18:20:30 by vpelc             #+#    #+#             */
-/*   Updated: 2024/08/28 16:01:06 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/08/31 13:33:54 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	display(t_game *obj, int i, int j, char sqr_type)
 		img = mlx_xpm_file_to_image(obj->mlx, "images/vines.xpm",
 				&size, &size);
 	else if (sqr_type == 'C')
-		img = mlx_xpm_file_to_image(obj->mlx, "images/collectible.xpm",
+		img = mlx_xpm_file_to_image(obj->mlx, "images/gem.xpm",
 				&size, &size);
 	else if (sqr_type == 'E')
 		img = mlx_xpm_file_to_image(obj->mlx, "images/exit.xpm",
