@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_utils.c                                        :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 18:20:30 by vpelc             #+#    #+#             */
-/*   Updated: 2024/08/31 13:33:54 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/02 21:13:23 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	display(t_game *obj, int i, int j, char sqr_type)
 	void	*img;
 	int		size;
 
-	size = SQUARE_SIZE;
+	size = 30;
 	if (sqr_type == '1')
 		img = mlx_xpm_file_to_image(obj->mlx, "images/wall_1.xpm",
 				&size, &size);
@@ -37,7 +37,18 @@ void	display(t_game *obj, int i, int j, char sqr_type)
 	else if (sqr_type == 'E')
 		img = mlx_xpm_file_to_image(obj->mlx, "images/exit.xpm",
 				&size, &size);
-	else if (sqr_type == 'L')
+	else
+		return ;
+	mlx_put_image_to_window(obj->mlx, obj->win, img,
+		(i * size), (j * size));
+}
+void	display_player(t_game *obj, int i, int j, char sqr_type)
+{
+	void	*img;
+	int		size;
+
+	size = PLAYER_SIZE;
+	if (sqr_type == 'L' || sqr_type == 'P')
 		img = mlx_xpm_file_to_image(obj->mlx, "images/player_left.xpm",
 				&size, &size);
 	else if (sqr_type == 'R')
@@ -49,10 +60,13 @@ void	display(t_game *obj, int i, int j, char sqr_type)
 	else if (sqr_type == 'D')
 		img = mlx_xpm_file_to_image(obj->mlx, "images/player_down.xpm",
 				&size, &size);
-	mlx_put_image_to_window(obj->mlx, obj->win, img, (i * size), (j * size));
+	else
+		return ;
+	mlx_put_image_to_window(obj->mlx, obj->win, img,
+		(i * (size - 9)), (j * (size - 9)));
 }
 
-void	display_map(t_map *map, t_game *obj)
+void	display_first(t_map *map, t_game *obj)
 {
 	int	i;
 	int	j;
@@ -63,7 +77,30 @@ void	display_map(t_map *map, t_game *obj)
 		j = 0;
 		while (j < map->columns)
 		{
-			display(obj, j, i, map->tab[i][j]);
+			display(obj, j, i, '0');
+			j++;
+		}
+		i++;
+	}
+}
+
+void	display_map(t_map *map, t_game *obj)
+{
+	int	i;
+	int	j;
+
+	display_first(map, obj);
+	i = 0;
+	while (i < map->lines)
+	{
+		j = 0;
+		while (j < map->columns)
+		{
+			if (map->tab[i][j] == 'P')
+				display_player(obj, j, i, map->tab[i][j]);
+			else
+				display(obj, j, i, map->tab[i][j]);
+
 			j++;
 		}
 		i++;

@@ -6,13 +6,13 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:45:21 by vpelc             #+#    #+#             */
-/*   Updated: 2024/08/28 14:59:50 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/01 17:18:03 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/main.h"
 
-void	fill_copy(t_map *map, char ***copy)
+char	**fill_copy(t_map *map, char **copy)
 {
 	int	i;
 	int	j;
@@ -23,16 +23,18 @@ void	fill_copy(t_map *map, char ***copy)
 		j = 0;
 		while (j < map->columns)
 		{
-			(*copy)[i][j] = map->tab[i][j];
+			copy[i][j] = map->tab[i][j];
 			j++;
 		}
 		i++;
 	}
+	return (copy);
 }
 
-void	create_copy(t_map *map, char ***map_copy)
+char	**create_copy(t_map *map)
 {
 	int		i;
+	char	**map_copy;
 
 	map_copy = malloc(sizeof(char *) * (map->lines + 1));
 	if (!map_copy)
@@ -53,6 +55,7 @@ void	create_copy(t_map *map, char ***map_copy)
 		i++;
 	}
 	fill_copy(map, map_copy);
+	return (map_copy);
 }
 
 void	ft_search(char **map, int row, int col, t_map_copy *copy)
@@ -77,7 +80,7 @@ int	check_possible(t_map *map)
 	char		**map_copy;
 	t_map_copy	copy;
 
-	create_copy(map, &map_copy);
+	map_copy = create_copy(map);
 	if (!map_copy)
 		send_error("Error");
 	copy.map = map;

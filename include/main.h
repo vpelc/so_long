@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:17:22 by vpelc             #+#    #+#             */
-/*   Updated: 2024/08/28 15:43:28 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/02 20:50:51 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 # include <fcntl.h>
 # include <unistd.h>
-# include "mlx/mlx.h"
-# include "get_next_line/get_next_line.h" 
+# include "../mlx/mlx.h"
+# include "../get_next_line/get_next_line.h" 
 
-# define SQUARE_SIZE 64
+# define SQUARE_SIZE 72
+# define PLAYER_SIZE 84
 
 typedef struct s_game
 {
@@ -62,7 +63,9 @@ int		can_left(t_map *map);
 int		can_right(t_map *map);
 
 void	display(t_game *obj, int i, int j, char sqr_type);
+void	display_player(t_game *obj, int i, int j, char sqr_type);
 void	display_map(t_map *map, t_game *obj);
+void	display_first(t_map *map, t_game *game);
 void	close_window(t_game *obj);
 
 void	fill_map(t_map *map);

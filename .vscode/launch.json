@@ -8,7 +8,7 @@
 		"type": "cppdbg",
 		"request": "launch",
 		"program": "${workspaceFolder}/so_long",
-		"args": ["map1.ber"],
+		"args": ["map/map1.ber"],
 		"stopAtEntry": true,
 		"cwd": "${fileDirname}",
 		"environment": [],

@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:40:23 by vpelc             #+#    #+#             */
-/*   Updated: 2024/08/28 15:18:57 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/01 16:04:33 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,7 @@ void	fill_map(t_map *map)
 	}
 	map->end = 0;
 	map->moves = 0;
+	map->player = 0;
+	map->collect = 0;
 	free(line);
 }
