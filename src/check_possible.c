@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:45:21 by vpelc             #+#    #+#             */
-/*   Updated: 2024/09/01 17:18:03 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/04 17:11:21 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,19 @@ int	check_possible(t_map *map)
 {
 	char		**map_copy;
 	t_map_copy	copy;
+	int			i;
 
 	map_copy = create_copy(map);
 	if (!map_copy)
 		send_error("Error");
 	copy.map = map;
 	ft_search(map_copy, map->player_pos_x, map->player_pos_y, &copy);
+	i = map->lines - 1;
+	while (i >= 0)
+	{
+		free(map_copy[i]);
+		i--;
+	}
 	free(map_copy);
 	return ((copy.exit == map->exit) && (copy.collect == map->collect));
 }

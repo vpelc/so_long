@@ -6,11 +6,12 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:40:23 by vpelc             #+#    #+#             */
-/*   Updated: 2024/09/01 16:04:33 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/04 17:44:46 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/main.h"
+#include <stdio.h>
 
 static int	ft_strlen_next(char *line)
 {
@@ -40,34 +41,28 @@ static void	read_map(t_map *map)
 		if (map->columns != ft_strlen_next(line))
 			send_error("Error not a square");
 		map->lines++;
+		free(line);
 		line = get_next_line(fd);
 	}
-	free(line);
 }
 
 void	fill_map(t_map *map)
 {
 	int		i;
 	int		fd;
-	int		ll;
-	char	*line;
 
 	read_map(map);
 	fd = open(map->name, O_RDONLY);
 	map->tab = malloc(sizeof(char *) * map->lines);
-	line = get_next_line(fd);
-	ll = ft_strlen_next(line);
 	i = 0;
-	while (line)
+	while (i < map->lines)
 	{
-		map->tab[i] = malloc(sizeof(char) * ll);
-		map->tab[i] = line;
-		line = get_next_line(fd);
+		map->tab[i] = get_next_line(fd);
 		i++;
 	}
 	map->end = 0;
+	map->exit = 0;
 	map->moves = 0;
 	map->player = 0;
 	map->collect = 0;
-	free(line);
 }

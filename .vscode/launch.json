@@ -9,8 +9,8 @@
 		"request": "launch",
 		"program": "${workspaceFolder}/so_long",
 		"args": ["map/map1.ber"],
-		"stopAtEntry": true,
-		"cwd": "${fileDirname}",
+		"stopAtEntry": false,
+		"cwd": "${workspaceFolder}",
 		"environment": [],
 		"externalConsole": false,
 		"MIMode": "lldb"

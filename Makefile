@@ -6,7 +6,7 @@
 #    By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/31 22:13:20 by vpelc             #+#    #+#              #
-#    Updated: 2024/09/02 19:47:17 by vpelc            ###   ########.fr        #
+#    Updated: 2024/09/04 16:50:02 by vpelc            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ LIBRARIES           = -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppK
 
 # Source files
 SRCS                = main.c check_args.c check_map.c check_moves.c \
-					check_possible.c get_map.c display.c moves.c utils.c
+					check_possible.c get_map.c display.c moves.c utils.c \
+					assign.c refresh.c
 GNL_SRCS            = get_next_line.c get_next_line_utils.c
 
 # File paths
@@ -56,17 +57,17 @@ $(NAME): obj $(OBJ)
 # Compile object files from source files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -I$(INC) $(INCLUDES) -c $< -o $@
+	@$(CC) -g $(CFLAGS) -I$(INC) $(INCLUDES) -c $< -o $@
 	@echo "\033[1;32mFile $@ created.\033[0m";
 
 $(OBJ_DIR)/%.o: $(GNL_DIR)/%.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -I$(INC) -I$(GNL_DIR) $(INCLUDES) -c $< -o $@
+	@$(CC) -g $(CFLAGS) -I$(INC) -I$(GNL_DIR) $(INCLUDES) -c $< -o $@
 	@echo "\033[1;32mFile $@ created.\033[0m";
 
 clean:
 	@echo "Removing obj/..."
-	@$(RM) -r $(OBJ_DIR)
+	@$(RM) -r $(OBJ_DIR) 
 	@echo "\033[1;32mAll Done for clean.\033[0m"
 
 fclean: clean

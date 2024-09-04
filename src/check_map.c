@@ -6,13 +6,13 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:56:27 by vpelc             #+#    #+#             */
-/*   Updated: 2024/08/28 18:05:57 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/04 18:02:26 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/main.h"
 
-void	check_border(t_map *map)
+static void	check_border(t_map *map)
 {
 	int	i;
 
@@ -31,14 +31,21 @@ void	check_border(t_map *map)
 	}
 }
 
-void	check_size(t_map *map)
+static void	check_size(t_map *map)
 {
 	if ((map->columns * SQUARE_SIZE) > 1920
 		|| (map->lines * SQUARE_SIZE) > 1080)
 		send_error("Error! map to big for the screen");
 }
 
-void	check_elem(t_map *map)
+static void	elem_utils(t_map *map, int i, int j)
+{
+	map->player++;
+	map->player_pos_x = i;
+	map->player_pos_y = j;
+}
+
+static void	check_elem(t_map *map)
 {
 	int	i;
 	int	j;
@@ -54,11 +61,7 @@ void	check_elem(t_map *map)
 			if (map->exit > 1)
 				send_error("Error only one exit possible");
 			if (map->tab[i][j] == 'P')
-			{
-				map->player++;
-				map->player_pos_x = i;
-				map->player_pos_y = j;
-			}
+				elem_utils(map, i, j);
 			if (map->player > 1)
 				send_error("Error no multiplayer");
 			if (map->tab[i][j] == 'C')
