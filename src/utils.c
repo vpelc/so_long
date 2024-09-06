@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 20:47:20 by vpelc             #+#    #+#             */
-/*   Updated: 2024/09/04 18:03:07 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/04 19:29:33 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	close_window(t_map *map)
 	mlx_destroy_window(map->game->mlx, map->game->win);
 	free_img(map->game);
 	free_map(map);
-	system("leaks so_long");
+	// system("leaks so_long");
 	exit(0);
 }
 

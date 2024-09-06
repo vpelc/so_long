@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 18:30:21 by vpelc             #+#    #+#             */
-/*   Updated: 2024/09/04 18:03:32 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/06 14:54:01 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	write_move(t_map *map, char dir)
 		map->player_pos_y++;
 		display_player(map->game, map->player_pos_y, map->player_pos_x, 'R');
 	}
+	refresh_score(map);
 	map->tab[map->player_pos_x][map->player_pos_y] = 'P';
 }
 

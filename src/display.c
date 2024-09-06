@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 18:20:30 by vpelc             #+#    #+#             */
-/*   Updated: 2024/09/04 18:03:56 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/04 23:11:53 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,19 @@ static void	display_first(t_map *map, t_game *obj)
 	}
 }
 
+void	display_score(t_game *obj)
+{
+	int	i;
+
+	i = 0;
+	while (i < 3)
+	{
+		mlx_put_image_to_window(obj->mlx, obj->win, obj->nbr_0,
+			SQUARE_SIZE + (32 * i), 8);
+		i++;
+	}
+}
+
 void	display_map(t_map *map, t_game *obj)
 {
 	int	i;
@@ -88,4 +101,5 @@ void	display_map(t_map *map, t_game *obj)
 		}
 		i++;
 	}
+	display_score(obj);
 }

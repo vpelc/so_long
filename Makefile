@@ -6,7 +6,7 @@
 #    By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/31 22:13:20 by vpelc             #+#    #+#              #
-#    Updated: 2024/09/04 16:50:02 by vpelc            ###   ########.fr        #
+#    Updated: 2024/09/06 14:17:52 by vpelc            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ LIBRARIES           = -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppK
 # Source files
 SRCS                = main.c check_args.c check_map.c check_moves.c \
 					check_possible.c get_map.c display.c moves.c utils.c \
-					assign.c refresh.c
+					assign.c refresh.c display_score.c
 GNL_SRCS            = get_next_line.c get_next_line_utils.c
 
 # File paths

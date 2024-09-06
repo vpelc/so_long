@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:17:22 by vpelc             #+#    #+#             */
-/*   Updated: 2024/09/04 18:10:18 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/06 14:17:18 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 # define SQUARE_SIZE 72
 # define PLAYER_SIZE 81
+# define SCORE_SIZE 24
 
 typedef struct s_game
 {
@@ -84,7 +85,9 @@ void	assign_img(t_game *obj);
 void	display(t_game *obj, int i, int j, char sqr_type);
 void	display_player(t_game *obj, int i, int j, char sqr_type);
 void	display_map(t_map *map, t_game *obj);
+void	*display_numbers(t_map *map, int nbr);
 void	refresh_player(t_map *map);
+void	refresh_score(t_map *map);
 
 int		close_window(t_map *map);
 

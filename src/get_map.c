@@ -6,12 +6,11 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 14:40:23 by vpelc             #+#    #+#             */
-/*   Updated: 2024/09/04 17:44:46 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/06 15:00:56 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/main.h"
-#include <stdio.h>
 
 static int	ft_strlen_next(char *line)
 {

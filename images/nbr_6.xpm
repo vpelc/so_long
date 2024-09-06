@@ -1,0 +1,35 @@
+/* XPM */
+static char *_b163dd625004a099a77e78240a21609OrBLRGwOUzt7StRU[] = {
+/* columns rows colors chars-per-pixel */
+"22 24 5 1 ",
+"  c None",
+". c black",
+"X c #E80000",
+"o c #F85800",
+"O c #F88000",
+/* pixels */
+"    ................  ",
+"    ................  ",
+"  ....OOOOOOOOOOOO....",
+"  ....OOOOOOOOOOOO....",
+"....OOOO........OOOO..",
+"....OOOO........OOOO..",
+"..OOOO....    ..OOOO..",
+"..OOOO....    ..OOOO..",
+"..OOOO................",
+"..OOOO................",
+"..oooooooooooooo......",
+"..oooooooooooooo......",
+"..oooooo......oooooo..",
+"..oooooo......oooooo..",
+"..oooo....  ....oooo..",
+"..oooo....  ....oooo..",
+"..XXXX....  ....XXXX..",
+"..XXXX....  ....XXXX..",
+"....XXXX......XXXX....",
+"....XXXX......XXXX....",
+"  ....XXXXXXXXXX....  ",
+"  ....XXXXXXXXXX....  ",
+"    ..............    ",
+"    ..............    "
+};
