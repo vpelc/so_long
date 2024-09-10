@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:17:22 by vpelc             #+#    #+#             */
-/*   Updated: 2024/09/06 14:17:18 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/10 15:08:58 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,10 @@ void	not_win(t_map *map, char dir);
 void	fill_map(t_map *map);
 
 void	check_args(int argc, char *argv[]);
-
+void	check_know_char(t_map *map);
 void	check_map(t_map *map);
+int		check_possible(t_map *map);
 
 void	send_error(char *error);
-
-int		check_possible(t_map *map);
 
 #endif

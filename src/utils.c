@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 20:47:20 by vpelc             #+#    #+#             */
-/*   Updated: 2024/09/04 19:29:33 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/10 15:10:53 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	send_error(char *error)
 {
+	write(2, "\033[1;31mError!\033[0m", 17);
 	write(2, error, ft_strlen(error));
 	exit(1);
 }
@@ -45,37 +46,30 @@ static void	free_img(t_game *obj)
 
 int	close_window(t_map *map)
 {
-
 	mlx_clear_window(map->game->mlx, map->game->win);
 	mlx_destroy_window(map->game->mlx, map->game->win);
 	free_img(map->game);
 	free_map(map);
-	// system("leaks so_long");
 	exit(0);
 }
 
-void	not_win(t_map *map, char dir)
+void	check_know_char(t_map *map)
 {
-	map->tab[map->player_pos_x][map->player_pos_y] = '0';
-	refresh_player(map);
-	if (dir == 'U')
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < map->lines)
 	{
-		map->player_pos_x--;
-		display_player(map->game, map->player_pos_y, map->player_pos_x, 'U');
-	}
-	if (dir == 'D')
-	{
-		map->player_pos_x++;
-		display_player(map->game, map->player_pos_y, map->player_pos_x, 'D');
-	}
-	if (dir == 'L')
-	{
-		map->player_pos_y--;
-		display_player(map->game, map->player_pos_y, map->player_pos_x, 'L');
-	}
-	if (dir == 'R')
-	{
-		map->player_pos_y++;
-		display_player(map->game, map->player_pos_y, map->player_pos_x, 'R');
+		j = 0;
+		while (j < map->columns)
+		{
+			if (map->tab[i][j] != 'P' && map->tab[i][j] != 'E'
+				&& map->tab[i][j] != 'C'
+				&& map->tab[i][j] != '1' && map->tab[i][j] != '0')
+				send_error("\033[1;37m Not autorized character used\033[0m");
+			j++;
+		}
+		i++;
 	}
 }

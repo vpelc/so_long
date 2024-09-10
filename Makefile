@@ -6,7 +6,7 @@
 #    By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/31 22:13:20 by vpelc             #+#    #+#              #
-#    Updated: 2024/09/06 14:17:52 by vpelc            ###   ########.fr        #
+#    Updated: 2024/09/10 15:31:57 by vpelc            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,35 +46,37 @@ obj:
 		echo "\033[1;31mDirectory already created.\033[0m"; \
 	else \
 		mkdir -p $(OBJ_DIR); \
-		echo "Directory obj/ with files .o is being created..."; \
+		echo "\033[1;36mDirectory obj/ with files .o is being created...\033[0m"; \
 	fi
-
-$(NAME): obj $(OBJ)
-	@echo "Compiling so_long..."
-	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) -o $(NAME) $(LIBRARIES)
-	@echo "\033[1;32mDone.\033[0m"
 
 # Compile object files from source files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
 	@$(CC) -g $(CFLAGS) -I$(INC) $(INCLUDES) -c $< -o $@
-	@echo "\033[1;32mFile $@ created.\033[0m";
+#	@echo "\033[1;32mFile $@ created.\033[0m";
 
 $(OBJ_DIR)/%.o: $(GNL_DIR)/%.c
 	@mkdir -p $(@D)
 	@$(CC) -g $(CFLAGS) -I$(INC) -I$(GNL_DIR) $(INCLUDES) -c $< -o $@
-	@echo "\033[1;32mFile $@ created.\033[0m";
+#	@echo "\033[1;32mFile $@ created.\033[0m";
+
+$(NAME): $(OBJ) 
+	@echo "\033[1;36mCompiling so_long...\033[0m"
+	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) -o $(NAME) $(LIBRARIES)
+	@echo "\033[1;32mDone.\033[0m"
 
 clean:
-	@echo "Removing obj/..."
+	@echo "\033[1;35mRemoving obj/...\033[0m"
 	@$(RM) -r $(OBJ_DIR) 
 	@echo "\033[1;32mAll Done for clean.\033[0m"
 
 fclean: clean
-	@echo "Removing so_long..."
+	@echo "\033[1;35mRemoving so_long...\033[0m"
 	@$(RM) $(NAME)
 	@echo "\033[1;32mDone.\033[0m"
 
-re: fclean all
+re: fclean obj all
+
+bonus: all
 
 .PHONY: all obj clean fclean re

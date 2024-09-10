@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 15:55:45 by vpelc             #+#    #+#             */
-/*   Updated: 2024/08/28 14:51:25 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/09 17:06:05 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static int	ft_strncmp(const char *s1, const char *s2, size_t n)
 void	check_args(int argc, char *argv[])
 {
 	if (argc < 2)
-		send_error("Error! not enough info\n");
+		send_error("\033[1;37m Not enough info\n\033[0m");
 	if (argc > 2)
-		send_error("Error! too much info\n");
+		send_error("\033[1;37m Too much info\n\033[0m");
 	if (ft_strncmp(argv[1] + (ft_strlen(argv[1]) - 4), ".ber", 4))
-		send_error("Error! not the good file type\n");
+		send_error("\033[1;37m Not the good file type\n\033[0m");
 }

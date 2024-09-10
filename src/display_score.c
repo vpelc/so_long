@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:58:17 by vpelc             #+#    #+#             */
-/*   Updated: 2024/09/06 14:18:50 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/10 14:57:14 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,31 @@ void	*display_numbers(t_map *map, int nbr)
 		return (map->game->nbr_9);
 	else
 		return (NULL);
+}
+
+void	not_win(t_map *map, char dir)
+{
+	map->tab[map->player_pos_x][map->player_pos_y] = '0';
+	refresh_player(map);
+	if (dir == 'U')
+	{
+		map->player_pos_x--;
+		display_player(map->game, map->player_pos_y, map->player_pos_x, 'U');
+	}
+	if (dir == 'D')
+	{
+		map->player_pos_x++;
+		display_player(map->game, map->player_pos_y, map->player_pos_x, 'D');
+	}
+	if (dir == 'L')
+	{
+		map->player_pos_y--;
+		display_player(map->game, map->player_pos_y, map->player_pos_x, 'L');
+	}
+	if (dir == 'R')
+	{
+		map->player_pos_y++;
+		display_player(map->game, map->player_pos_y, map->player_pos_x, 'R');
+	}
+	refresh_score(map);
 }

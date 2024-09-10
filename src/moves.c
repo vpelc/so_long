@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 18:30:21 by vpelc             #+#    #+#             */
-/*   Updated: 2024/09/06 14:54:01 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/09 16:31:04 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	move_up(t_map *map)
 	{
 		if (map->tab[map->player_pos_x - 1][map->player_pos_y] == 'C')
 		{
-			display(map->game, map->player_pos_y, map->player_pos_x - 1, '0');
+			map->tab[map->player_pos_x - 1][map->player_pos_y] = '0';
 			map->collect--;
 		}
 		else if (map->tab[map->player_pos_x - 1][map->player_pos_y] == 'E'
@@ -61,7 +61,10 @@ void	move_up(t_map *map)
 	}
 	else if (map->tab[map->player_pos_x - 1][map->player_pos_y] == 'E'
 			&& map->collect != 0)
+	{
+		map->moves++;
 		not_win(map, 'U');
+	}
 }
 
 void	move_down(t_map *map)
@@ -70,7 +73,7 @@ void	move_down(t_map *map)
 	{
 		if (map->tab[map->player_pos_x + 1][map->player_pos_y] == 'C')
 		{
-			display(map->game, map->player_pos_y, map->player_pos_x + 1, '0');
+			map->tab[map->player_pos_x + 1][map->player_pos_y] = '0';
 			map->collect--;
 		}
 		else if (map->tab[map->player_pos_x + 1][map->player_pos_y] == 'E'
@@ -84,7 +87,10 @@ void	move_down(t_map *map)
 	}
 	else if (map->tab[map->player_pos_x + 1][map->player_pos_y] == 'E'
 			&& map->collect != 0)
+	{
+		map->moves++;
 		not_win(map, 'D');
+	}
 }
 
 void	move_left(t_map *map)
@@ -93,7 +99,7 @@ void	move_left(t_map *map)
 	{
 		if (map->tab[map->player_pos_x][map->player_pos_y - 1] == 'C')
 		{
-			display(map->game, map->player_pos_y - 1, map->player_pos_x, '0');
+			map->tab[map->player_pos_x][map->player_pos_y - 1] = '0';
 			map->collect--;
 		}
 		else if (map->tab[map->player_pos_x][map->player_pos_y - 1] == 'E'
@@ -107,7 +113,10 @@ void	move_left(t_map *map)
 	}
 	else if (map->tab[map->player_pos_x][map->player_pos_y - 1] == 'E'
 			&& map->collect != 0)
+	{
+		map->moves++;
 		not_win(map, 'L');
+	}
 }
 
 void	move_right(t_map *map)
@@ -116,7 +125,7 @@ void	move_right(t_map *map)
 	{
 		if (map->tab[map->player_pos_x][map->player_pos_y + 1] == 'C')
 		{
-			display(map->game, map->player_pos_y + 1, map->player_pos_x, '0');
+			map->tab[map->player_pos_x][map->player_pos_y + 1] = '0';
 			map->collect--;
 		}
 		else if (map->tab[map->player_pos_x][map->player_pos_y + 1] == 'E'
@@ -130,5 +139,8 @@ void	move_right(t_map *map)
 	}
 	else if (map->tab[map->player_pos_x][map->player_pos_y + 1] == 'E'
 			&& map->collect != 0)
+	{
+		map->moves++;
 		not_win(map, 'R');
+	}
 }

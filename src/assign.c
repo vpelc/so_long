@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:33:56 by vpelc             #+#    #+#             */
-/*   Updated: 2024/09/04 23:02:12 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/09 16:37:24 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	assign_numbers(t_game *obj)
 	obj->nbr_9 = mlx_xpm_file_to_image(obj->mlx, "images/nbr_9.xpm",
 			&size, &size);
 }
-
 
 void	assign_img(t_game *obj)
 {

@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:45:21 by vpelc             #+#    #+#             */
-/*   Updated: 2024/09/04 17:11:21 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/09 17:08:55 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ char	**create_copy(t_map *map)
 
 	map_copy = malloc(sizeof(char *) * (map->lines + 1));
 	if (!map_copy)
-		send_error("Error malloc");
+		send_error("\033[1;37m Problem with malloc\n\033[0m");
 	i = 0;
 	while (i < map->lines)
 	{
 		map_copy[i] = malloc(sizeof(char) * (map->columns + 1));
 		if (!map_copy[i])
 		{
-			send_error("Error malloc");
+			send_error("\033[1;37m Problem with malloc\n\033[0m");
 			while (i >= 0)
 			{
 				free(map_copy[i]);
@@ -83,8 +83,10 @@ int	check_possible(t_map *map)
 
 	map_copy = create_copy(map);
 	if (!map_copy)
-		send_error("Error");
+		send_error("\033[1;37m Problem with malloc\n\033[0m");
 	copy.map = map;
+	copy.collect = 0;
+	copy.exit = 0;
 	ft_search(map_copy, map->player_pos_x, map->player_pos_y, &copy);
 	i = map->lines - 1;
 	while (i >= 0)

@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 19:42:35 by vpelc             #+#    #+#             */
-/*   Updated: 2024/09/06 15:00:02 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/09 16:37:12 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	refresh_first(t_map *map)
 {
 	display(map->game, map->player_pos_y - 1, map->player_pos_x, '0');
-	display(map->game, map->player_pos_y, map->player_pos_x - 1,'0');
+	display(map->game, map->player_pos_y, map->player_pos_x - 1, '0');
 	display(map->game, map->player_pos_y, map->player_pos_x, '0');
 	display(map->game, map->player_pos_y, map->player_pos_x + 1, '0');
 	display(map->game, map->player_pos_y + 1, map->player_pos_x, '0');
@@ -64,7 +64,6 @@ void	refresh_score(t_map *map)
 		refresh_score_big(map);
 		return ;
 	}
-
 	mlx_put_image_to_window(map->game->mlx, map->game->win,
 		display_numbers(map, (m / 100)), SQUARE_SIZE + (32 * i), 8);
 	m %= 100;

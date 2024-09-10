@@ -6,7 +6,7 @@
 /*   By: vpelc <vpelc@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 18:20:30 by vpelc             #+#    #+#             */
-/*   Updated: 2024/09/04 23:11:53 by vpelc            ###   ########.fr       */
+/*   Updated: 2024/09/09 16:38:02 by vpelc            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	display(t_game *obj, int i, int j, char sqr_type)
 	mlx_put_image_to_window(obj->mlx, obj->win, img,
 		(i * SQUARE_SIZE), (j * SQUARE_SIZE));
 }
-
 
 void	display_player(t_game *obj, int i, int j, char sqr_type)
 {
@@ -96,7 +95,6 @@ void	display_map(t_map *map, t_game *obj)
 				display_player(obj, j, i, map->tab[i][j]);
 			else
 				display(obj, j, i, map->tab[i][j]);
-
 			j++;
 		}
 		i++;
